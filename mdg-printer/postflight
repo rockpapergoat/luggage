@@ -1,0 +1,4 @@
+#!/bin/bash
+# 100726
+# add the hp2100 printer
+/usr/sbin/lpadmin -p hp2100 -L "HP 2100" -E -v lpd://172.16.0.40 -P "/Library/Printers/PPDs/Contents/Resources/HP LaserJet 2100 Series.gz" -o printer-is-shared=false
