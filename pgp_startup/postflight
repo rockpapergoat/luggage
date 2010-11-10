@@ -1,0 +1,4 @@
+#!/bin/bash
+
+# postflight
+/bin/launchctl load -w /Library/LaunchAgents/com.adullmoment.pgpstartup.plist

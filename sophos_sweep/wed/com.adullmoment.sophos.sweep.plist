@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>KeepAlive</key>
+	<false/>
+	<key>Label</key>
+	<string>com.adullmoment.sophos.sweep.plist</string>
+	<key>LowPriorityIO</key>
+	<true/>
+	<key>OnDemand</key>
+	<false/>
+	<key>Program</key>
+	<string>/usr/local/bin/sophos_sweep.sh</string>
+	<key>RunAtLoad</key>
+	<false/>
+	<key>ServiceDescription</key>
+	<string>Scheduled Sweep for Sophos AV</string>
+	<key>StandardErrorPath</key>
+	<string>/dev/null</string>
+	<key>StandardOutPath</key>
+	<string>/dev/null</string>
+	<key>StartCalendarInterval</key>
+	<dict>
+		<key>Hour</key>
+		<integer>12</integer>
+		<key>Minute</key>
+		<integer>0</integer>
+		<key>Weekday</key>
+		<integer>3</integer>
+	</dict>
+</dict>
+</plist>

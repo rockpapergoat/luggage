@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+# 101102, nate@tsp
+# install cert to /etc, remove when done
+if [ -f /etc/cert/CA.pem ]; then
+	/usr/bin/security add-trusted-cert -d -r trustRoot -k /Library/Keychains/System.keychain /etc/cert/CA.pem
+else
+	echo "can't proceed; no cert in temp"
+fi
