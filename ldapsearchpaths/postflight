@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+# just to be sure, set perms, ownership and kick DS
+contacts="/Library/Preferences/DirectoryService/ContactsNodeConfig.plist"
+search="/Library/Preferences/DirectoryService/SearchNodeConfig.plist"
+chown root:admin $contacts $search
+chmod 600 $contacts $search
+killall -HUP DirectoryService
