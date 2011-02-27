@@ -7,7 +7,7 @@
 include /usr/local/share/luggage/luggage.make
 
 TITLE=keepassx
-REVERSE_DOMAIN=com.adullmoment.keepassx
+REVERSE_DOMAIN=com.adullmoment
 PAYLOAD=install-app2luggage-KeePassX.app
 
 install-app2luggage-KeePassX.app: l_Applications KeePassX.app.2010-11-29.tar.bz2

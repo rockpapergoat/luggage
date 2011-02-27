@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>WindowState</key>
+	<dict>
+		<key>name</key>
+		<string>ScriptWindowState</string>
+		<key>positionOfDivider</key>
+		<real>782</real>
+		<key>savedFrame</key>
+		<string>137 7 1322 969 0 0 1920 1178 </string>
+		<key>selectedTabView</key>
+		<string>result</string>
+	</dict>
+</dict>
+</plist>

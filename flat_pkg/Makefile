@@ -18,8 +18,10 @@
 
 include /usr/local/share/luggage/luggage.make
 
-TITLE=dockutil
+TITLE=something
 REVERSE_DOMAIN=com.adullmoment
-PAYLOAD=\
-	pack-usr-local-bin-dockutil\
-	pack-script-postflight
+PACKAGE_TARGET_OS=10.4
+#PLIST_FLAVOR=pkg-info
+PM_RESTART=RequiredRestart
+PM_EXTRA_ARGS=--verbose --no-recommend
+PAYLOAD=pack-usr-local-bin-something

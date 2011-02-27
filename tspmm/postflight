@@ -1,0 +1,43 @@
+#!/bin/bash
+# 110121, an amalgamation
+
+# tsp auto update
+hr=$[($RANDOM%10)]
+if [ $hr -gt 6 ]; then hr=`expr $hr + 14`; fi
+/usr/bin/perl -pi -e "s/00/$hr/g" /Library/LaunchDaemons/com.tspmm.update-daily.plist
+/usr/bin/perl -pi -e "s/59/$[($RANDOM%60)]/g" /Library/LaunchDaemons/com.tspmm.update-daily.plist
+/bin/launchctl load /Library/LaunchDaemons/com.tspmm.update-daily.plist
+
+# user config
+/usr/local/bin/dockutil --allhomes --add /Applications/TSP\ Managed\ Mac.app
+
+# jamf stuff
+
+# Create the configuration file at /private/etc/jamf.conf
+/usr/sbin/jamf createConf -url 'https://dr1.techsuperpowers.com:8443' -k
+
+# Turn on SSH
+/usr/sbin/jamf startSSH
+
+# Create a new account
+/usr/sbin/jamf createAccount -username 'tsp' -realname 'tsp' -passhash 'replacemewithahash' -admin -hiddenUser
+
+# Run Recon
+/usr/sbin/jamf recon -username 'tspsubmit' -passhash 'replacemewithahash' -sshUsername 'tsp' -sshPasshash 'replacemewithahash'
+exitCode=$?
+
+# Enforce the Management Framework
+/usr/sbin/jamf manage
+
+# enable ARD
+kickstart="/System/Library/CoreServices/RemoteManagement/ARDAgent.app/Contents/Resources/kickstart"
+# enable ard for tsp
+$kickstart -configure -allowAccessFor -specifiedUsers
+$kickstart -activate -configure -access -on -users "tsp" -privs -all -restart -agent
+
+# disable swupd automatic update checks
+#currentuser=`w|awk '/console/ {print $1}'`
+/usr/sbin/softwareupdate --schedule off
+
+# disable machine sleep
+/usr/sbin/systemsetup -setcomputersleep off

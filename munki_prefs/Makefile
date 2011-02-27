@@ -13,13 +13,8 @@
 #   See the License for the specific language governing permissions and
 #   limitations under the License.
 #
-# 
-# Example of packaging a gui application
-
 include /usr/local/share/luggage/luggage.make
 
-TITLE=dockutil
-REVERSE_DOMAIN=com.adullmoment
-PAYLOAD=\
-	pack-usr-local-bin-dockutil\
-	pack-script-postflight
+TITLE=munki_prefs
+REVERSE_DOMAIN=com.company
+PAYLOAD=pack-Library-Preferences-ManagedInstalls.plist

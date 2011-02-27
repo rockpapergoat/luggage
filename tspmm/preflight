@@ -1,0 +1,4 @@
+#!/bin/bash
+# unload the updater before installing
+/bin/launchctl unload /Library/LaunchDaemons/com.tspmm.update-daily.plist
+exit 0

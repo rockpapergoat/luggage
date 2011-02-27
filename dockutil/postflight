@@ -1,0 +1,3 @@
+#!/bin/bash
+# 110120, add a dock item at the end
+/usr/local/bin/dockutil --add /Applications/TSP\ Managed\ Mac.app

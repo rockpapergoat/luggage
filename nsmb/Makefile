@@ -13,13 +13,12 @@
 #   See the License for the specific language governing permissions and
 #   limitations under the License.
 #
-# 
-# Example of packaging a gui application
+#
 
 include /usr/local/share/luggage/luggage.make
 
-TITLE=dockutil
-REVERSE_DOMAIN=com.adullmoment
+TITLE=nsmb.conf_install
+REVERSE_DOMAIN=com.company
 PAYLOAD=\
-	pack-usr-local-bin-dockutil\
-	pack-script-postflight
+	pack-etc-nsmb.conf\
+	pack-etc-sysctl.conf
