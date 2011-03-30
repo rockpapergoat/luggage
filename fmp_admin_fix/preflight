@@ -1,0 +1,11 @@
+#!/bin/bash
+# preflight for fmp admin update fix
+fmp_dir="/Library/FileMaker\ Server/Admin/admin-server/admin-client-lib"
+
+if [[ -e $fmp_dir/admin-console-client.jar ]]; then
+	/bin/mv -v $fmp_dir/admin-console-client.jar /var/root/admin-console-client.jar.`date +%Y%m%d`
+	/usr/bin/javaws -Xclearcache
+	else
+	echo "no admin-console-client.jar here. proceeding..."
+	/usr/bin/javaws -Xclearcache
+fi

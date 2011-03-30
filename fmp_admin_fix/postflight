@@ -1,0 +1,5 @@
+#!/bin/bash
+# postflight for fmp admin fix
+target="/Library/FileMaker Server/Admin/admin-server/admin-client-lib/admin-console-client.jar"
+/bin/chmod -v 444 "$target"
+/usr/sbin/chown -v fmserver:fmsadmin "$target"
