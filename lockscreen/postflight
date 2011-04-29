@@ -1,0 +1,7 @@
+#!/bin/bash
+#
+
+/bin/mv -v /Library/Preferences/LockScreenPicture.png /Library/Preferences/Lock\ Screen\ Picture.png
+# test it?
+/usr/local/bin/lockscreen.sh
+exit 0

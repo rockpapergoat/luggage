@@ -1,0 +1,170 @@
+.\" manual page [] for netExtender 2.4
+.\" $Id: pppd.8,v 1.76 2004/01/15 05:09:00 paulus Exp $
+.\" SH section heading
+.\" SS subsection heading
+.\" LP paragraph
+.\" IP indented paragraph
+.\" TP hanging label
+.\" 
+.\" Copyright (c) 2005 SonicWALL
+.\"
+.TH netExtender 1
+.SH NAME
+netExtender \- SonicWALL netExtender Linux/MacOSX client
+.SH SYNOPSIS
+.B netExtender
+[
+.I options
+]
+.SH DESCRIPTION
+.LP
+netExtender is a linux client for SonicWALL's sslvpn product. netExtender uses linux kernal pppd to build a connection of SonicWALL's sslvpn server on a ssl encrypted channel.
+
+.SH OPTIONS
+.TP
+.I u user_name
+Required. Specify the user name for your sslvpn account.
+.TP
+.I p password
+Required. Specify the password for your sslvpn account
+.TP
+.I d domain_name
+Required. Specify the domain name for your sslvpn account. You can configure multiple domains in your sslvpn server box and assign different user access priviledge to each domain.
+.TP
+.I t time_in_seconds
+Optional. Specify the sslvpn login timeout value in seconds.
+.TP
+.I e cipher
+Optional. Specify the encryption cipher of sslvpn tunnel, can be one of following:
+.br
+	EXP-RC4-MD5
+.br
+	RC4-MD5
+.br
+	RC4-SHA
+.br
+	EXP-DES-CBC-SHA
+.br
+	DES-CBC-SHA
+.br
+	DES-CBC3-SHA
+.br
+	EXP-RC2-CBC-MD5
+.br
+	EXP-EDH-RSA-DES-CBC-SHA
+.br
+	EDH-RSA-DES-CBC-SHA
+.br
+	EDH-RSA-DES-CBC3-SHA
+.br
+	AES128-SHA
+.br
+	DHE-RSA-AES128-SHA
+.br
+	AES256-SHA
+.br
+	DHE-RSA-AES256-SHA
+.TP
+.I m
+.br
+Optional. By default when the sslvpn connection is up, netExtender will automatically install a set of route into the local machine. The set of route information can be configured in sslvpn server box. If specified, no route will be installed on the local machine. This option is useful if you want to run multiple instance of netExtender client on same box, which is most commomly used in a test environment.
+.TP
+.I v 
+.br
+Optional. If specified, will display netExtender version information.
+.TP
+.I h
+.br
+Optional. If specified, will display a short usage information of netExtender client.
+.TP
+.I r file
+.br
+Optional. If netExtender doesn't work on your system, you can use this option to generate a tech support report.
+
+.SH INSTALLATION
+For linux system with "rpm" support, to install:
+.br
+	rpm -i netExtenderClient-x.x.x.x-x.i386.rpm
+.br
+	x.x.x.x-x: for version number
+.PP
+For linux system with "alien" support, to install:
+.br
+	alien -i netExtenderClient-x.x.x.x.i386.rpm
+.br
+There is a post install script inside the rpm which may not be invoked automatically by alien, you may invoke manaully:
+.br
+	netExtender -i
+.br
+	chmod 755 /etc/ppp/ip-up
+.br
+	chmod 755 /etc/ppp/ip-down
+
+.PP
+For MacOS, netExtender come with a tar ball, to install:
+.br
+	tar zxvf netExtenderClient-mac.x.x.x.x-x.tar.gz
+.br
+	cd netExtenderClient
+.br
+	./install  (need run as root here)
+
+
+.SH COMPATIBILITY
+netExtender Client has been tested on following platform:
+.br
+	RedHat 8
+.br
+	RedHat 9
+.br
+	RedHat Fedora 1
+.br
+	RedHat Fedora 3
+.br
+	RedHat Fedora 4
+.br
+	Mandrake 10.x
+.br
+	Auditor 10 (based on Kropping)
+.br
+	Suse 9.1
+.br
+	MacOS 10.x
+  
+For Mandrake 10.x, pppd may not be installed by default, and you need to installed it by yourself if /usr/sbin/pppd doesn't exist. Here are steps you can take to install pppd:
+.PP
+Install libpcap.so if not installed. libpcap.so can be downloaded from: 
+.br
+http://rpm.pbone.net/index.php3/stat/4/idpl/2226871/com/libpcap0-0.7.2-1.1mdk.i586.rpm. 
+.br
+install by: rpm -i libpcap0-0.7.2-1.1mdk.i586.rpm
+.PP
+Install pppd. pppd can be downloaded from: 
+.br
+http://prdownloads.sourceforge.net/poptop/. 
+.br
+Install by:  rpm --upgrade ppp-2.4.3-4mdk10.1.i586.rpm
+.br
+.PP
+For Auditor linux, there is no rpm tools. You can install with alien:
+
+.SH EXAMPLES
+You may invoke netExtender with full options in cli:
+.br
+  netExtender -u u1 -p p1 -d domain sslvpn.company.com
+.PP
+Or you may omit some required options and the console and prompt for your input:
+.br
+  netExtender -u u1 -d domain sslvpn.compnay.com
+.PP
+Or you may omit all options:
+.br
+  netExtender
+
+.SH SUPPORT
+If you have problem running netExtender on your system, type following command to generate a tech support file:
+.br
+	netExtender -r support
+
+.SH SEE ALSO
+pppd(8)
