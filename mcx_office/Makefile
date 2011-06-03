@@ -18,6 +18,18 @@
 
 include /usr/local/share/luggage/luggage.make
 
-TITLE=dockutil
-REVERSE_DOMAIN=com.adullmoment
-PAYLOAD=pack-usr-local-bin-dockutil
+TITLE=mcx_office
+REVERSE_DOMAIN=com.company
+PAYLOAD=\
+	pack-mcx-mcx_office.plist \
+	pack-usr-local-bin-mcx_import.rb\
+	pack-script-postflight
+
+
+pack-mcx-%: % l_etc_mcx
+	@sudo ${INSTALL} -m 644 -g wheel -o root $< ${WORK_D}/private/etc/mcx
+
+l_etc_mcx: l_private_etc
+	@sudo mkdir -p ${WORK_D}/private/etc/mcx
+	@sudo chown -R root:wheel ${WORK_D}/private/etc/mcx
+	@sudo chmod -R 755 ${WORK_D}/private/etc/mcx

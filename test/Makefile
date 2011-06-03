@@ -18,6 +18,10 @@
 
 include /usr/local/share/luggage/luggage.make
 
-TITLE=dockutil
-REVERSE_DOMAIN=com.adullmoment
-PAYLOAD=pack-usr-local-bin-dockutil
+TITLE=test
+REVERSE_DOMAIN=com.company
+PAYLOAD=pack-tmp-test
+
+pack-tmp-%: package_root
+	@sudo mkdir -pv ${WORK_D}/private/tmp
+	@sudo cp -v test ${WORK_D}/private/tmp/

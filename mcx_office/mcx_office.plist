@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>com.microsoft.Outlook</key>
+	<dict>
+		<key>AutomaitcallyDownloadExternalContent</key>
+		<dict>
+			<key>state</key>
+			<string>once</string>
+			<key>value</key>
+			<integer>1</integer>
+		</dict>
+	</dict>
+	<key>com.microsoft.autoupdate2</key>
+	<dict>
+		<key>Applications</key>
+		<dict>
+			<key>state</key>
+			<string>once</string>
+			<key>value</key>
+			<dict>
+				<key>/Applications/Microsoft Office 2011/Microsoft Communicator.app</key>
+				<dict>
+					<key>Application ID</key>
+					<string>UCCP08</string>
+					<key>LCID</key>
+					<string>1033</string>
+				</dict>
+				<key>/Applications/Microsoft Office 2011/Microsoft Excel.app</key>
+				<dict>
+					<key>Application ID</key>
+					<string>MSOf14</string>
+					<key>LCID</key>
+					<integer>1033</integer>
+				</dict>
+				<key>/Applications/Microsoft Office 2011/Microsoft Messenger.app</key>
+				<dict>
+					<key>Application ID</key>
+					<string>MSNS08</string>
+					<key>LCID</key>
+					<string>1033</string>
+				</dict>
+				<key>/Applications/Microsoft Office 2011/Microsoft Outlook.app</key>
+				<dict>
+					<key>Application ID</key>
+					<string>MSOf14</string>
+					<key>LCID</key>
+					<integer>1033</integer>
+				</dict>
+				<key>/Applications/Microsoft Office 2011/Microsoft PowerPoint.app</key>
+				<dict>
+					<key>Application ID</key>
+					<string>MSOf14</string>
+					<key>LCID</key>
+					<integer>1033</integer>
+				</dict>
+				<key>/Applications/Microsoft Office 2011/Microsoft Word.app</key>
+				<dict>
+					<key>Application ID</key>
+					<string>MSOf14</string>
+					<key>LCID</key>
+					<integer>1033</integer>
+				</dict>
+				<key>/Applications/Microsoft Office 2011/Remote Desktop Connection.app</key>
+				<dict>
+					<key>Application ID</key>
+					<string>RDC200</string>
+					<key>LCID</key>
+					<string>1033</string>
+				</dict>
+				<key>/Applications/Open XML Converter.app</key>
+				<dict>
+					<key>Application ID</key>
+					<string>OCNV</string>
+					<key>LCID</key>
+					<integer>1033</integer>
+				</dict>
+				<key>/Library/Application Support/Microsoft/HV1.0/Microsoft Help Viewer.app</key>
+				<dict>
+					<key>Application ID</key>
+					<string>HlpV1</string>
+					<key>LCID</key>
+					<integer>1033</integer>
+				</dict>
+				<key>/Library/Application Support/Microsoft/MAU2.0/Microsoft AutoUpdate.app</key>
+				<dict>
+					<key>Application ID</key>
+					<string>MSau02</string>
+					<key>LCID</key>
+					<integer>1033</integer>
+				</dict>
+				<key>/Library/Application Support/Microsoft/MERP2.0/Microsoft Error Reporting.app</key>
+				<dict>
+					<key>Application ID</key>
+					<string>Merp2</string>
+					<key>LCID</key>
+					<integer>1033</integer>
+				</dict>
+				<key>/Library/Application Support/Microsoft/Office Converter Support/MicrosoftComponentPlugin.framework</key>
+				<dict>
+					<key>Application ID</key>
+					<string>OCNVLib</string>
+					<key>LCID</key>
+					<integer>1033</integer>
+				</dict>
+			</dict>
+		</dict>
+		<key>HowToCheck</key>
+		<dict>
+			<key>state</key>
+			<string>once</string>
+			<key>value</key>
+			<string>Manual</string>
+		</dict>
+		<key>LastUpdate</key>
+		<dict>
+			<key>state</key>
+			<string>once</string>
+			<key>value</key>
+			<date>2001-04-01T16:00:00Z</date>
+		</dict>
+		<key>WhenToCheck</key>
+		<dict>
+			<key>state</key>
+			<string>once</string>
+			<key>value</key>
+			<integer>2</integer>
+		</dict>
+	</dict>
+	<key>com.microsoft.error_reporting</key>
+	<dict>
+		<key>SQMReportsEnabled</key>
+		<dict>
+			<key>state</key>
+			<string>once</string>
+			<key>value</key>
+			<false/>
+		</dict>
+		<key>ShipAssertEnabled</key>
+		<dict>
+			<key>state</key>
+			<string>once</string>
+			<key>value</key>
+			<false/>
+		</dict>
+	</dict>
+	<key>com.microsoft.office</key>
+	<dict>
+		<key>14\FirstRun\SetupComplete</key>
+		<dict>
+			<key>state</key>
+			<string>once</string>
+			<key>value</key>
+			<integer>1</integer>
+		</dict>
+		<key>14\Toolbars\ShowWysiwyg</key>
+		<dict>
+			<key>state</key>
+			<string>once</string>
+			<key>value</key>
+			<integer>0</integer>
+		</dict>
+		<key>14\UserInfo\UserAddress</key>
+		<dict>
+			<key>state</key>
+			<string>once</string>
+			<key>value</key>
+			<string></string>
+		</dict>
+		<key>14\UserInfo\UserInitials</key>
+		<dict>
+			<key>state</key>
+			<string>once</string>
+			<key>value</key>
+			<string>xx</string>
+		</dict>
+		<key>14\UserInfo\UserName</key>
+		<dict>
+			<key>state</key>
+			<string>once</string>
+			<key>value</key>
+			<string>xxxx</string>
+		</dict>
+		<key>14\UserInfo\UserOrganization</key>
+		<dict>
+			<key>state</key>
+			<string>once</string>
+			<key>value</key>
+			<string>xxxx</string>
+		</dict>
+	</dict>
+</dict>
+</plist>
