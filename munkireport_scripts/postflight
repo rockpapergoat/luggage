@@ -1,0 +1,38 @@
+#!/bin/bash
+
+RUNTYPE="$1"
+MAC=`ifconfig en0 | awk '/ether/ {print $2}'`
+NAME="$(echo `systemsetup -getcomputername | cut -d: -f2-`)"
+REPORTPATH="/Library/Managed Installs/ManagedInstallReport.plist"
+SUBMITURL="http://10.11.10.35:8444/update"
+PLISTBUDDY="/usr/libexec/PlistBuddy"
+
+# Copy the report to a temporary file.
+TMPPLIST=/tmp/`head -c10 /dev/urandom | md5`.plist
+cp "$REPORTPATH" "$TMPPLIST"
+
+# Generate a system_profiler report.
+PROFILEPLIST=/tmp/`head -c10 /dev/urandom | md5`.plist
+/usr/sbin/system_profiler -xml SPNetworkDataType SPHardwareDataType > "$PROFILEPLIST"
+
+# Merge system profiler report with munki report.
+$PLISTBUDDY -c "Add :MachineInfo:SystemProfile array" "$TMPPLIST"
+$PLISTBUDDY -c "Merge $PROFILEPLIST :MachineInfo:SystemProfile" "$TMPPLIST"
+
+# Compress and encode report.
+TMP=`mktemp -t postflight`
+echo -n "base64bz2report=" > "$TMP"
+bzip2 --best < "$TMPPLIST" | openssl base64 >> "$TMP"
+
+# Submit to server.
+curl --max-time 30 --silent \
+    -d runtype="$RUNTYPE" \
+    -d mac="$MAC" \
+    -d name="$NAME" \
+    -d "@$TMP" \
+    "$SUBMITURL/postflight"
+
+# Clean up.
+rm -f "$TMP" "$TMPPLIST" "$PROFILEPLIST"
+
+exit 0

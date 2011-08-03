@@ -16,9 +16,8 @@ end
 def get_mcx
   folder = "/etc/mcx"
   if File::directory?("#{folder}")
-    #puts "#{folder} already exists."
-    @files = Dir.glob("#{folder}/*.plist").to_a
-    return @files
+    @files = Dir.glob("#{folder}/*.plist")
+    p @files
     if @files == []
       puts "no mcx files to import. quitting now."
       exit(1)
@@ -26,8 +25,8 @@ def get_mcx
   else
     FileUtils.mkdir_p("#{folder}", :verbose => true)
     FileUtils.chown_R("root", "staff", "#{folder}", :verbose => true)
-    @files = Dir.glob("#{folder}/*.plist").to_a
-      return @files
+    @files = Dir.glob("#{folder}/*.plist")
+    p @files
     if @files == []
       puts "no mcx files to import. quitting now."
       exit(1)

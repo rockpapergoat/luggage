@@ -1,0 +1,17 @@
+#!/bin/bash
+
+RUNTYPE="$1"
+if [ -z "$RUNTYPE" ]; then
+    RUNTYPE="reportbrokenclient"
+fi
+MAC=`ifconfig en0 | awk '/ether/ {print $2}'`
+NAME="$(echo `systemsetup -getcomputername | cut -d: -f2-`)"
+SUBMITURL="http://10.11.10.35:8444/update"
+
+curl --max-time 5 --silent \
+    -d runtype="$RUNTYPE" \
+    -d mac="$MAC" \
+    -d name="$NAME" \
+    "$SUBMITURL/report_broken_client"
+
+exit 0
