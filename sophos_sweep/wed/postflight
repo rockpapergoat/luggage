@@ -1,4 +1,4 @@
 #!/bin/bash
 
 # postflight
-/bin/launchctl load -w /Library/LaunchAgents/com.adullmoment.sophos_sweep.plist
+/bin/launchctl load -w /Library/LaunchAgents/com.example.sophos_sweep.plist

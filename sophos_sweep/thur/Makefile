@@ -18,8 +18,8 @@
 include /usr/local/share/luggage/luggage.make
 
 TITLE=sophos.sweep.thur
-REVERSE_DOMAIN=com.adullmoment.sophos.sweep.thur
+REVERSE_DOMAIN=com.example.sophos.sweep.thur
 PAYLOAD=\
-	pack-Library-LaunchAgents-com.adullmoment.sophos.sweep.plist \
+	pack-Library-LaunchAgents-com.example.sophos.sweep.plist \
 	pack-usr-local-bin-sophos_sweep.sh \
 	pack-script-postflight
