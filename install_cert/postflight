@@ -1,0 +1,23 @@
+#!/bin/bash
+# 101109, nate@tsp
+# 110907, modified version of old cert installer for 802.1x
+# imports company CA to system keychain
+# this should work for 10.6 clients
+# it will NOT work for 10.[4-5] clients
+
+# where's the CA?
+cert="/etc/COMPANY-CA.pem"
+
+# test whether the cert was dropped in /etc first, then import
+if [[ -f $cert ]]; then
+	echo "importing $cert and setting trust"
+	/usr/bin/security add-trusted-cert -d -r trustRoot -k /Library/Keychains/System.keychain $cert
+else
+	echo "can't proceed; no $cert in /etc"
+	exit 1
+fi
+
+# remove the cert when we're done
+echo "removing $cert file on disk"
+rm $cert
+exit 0
