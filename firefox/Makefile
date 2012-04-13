@@ -3,7 +3,7 @@
 #
 #   Licensed under the Apache License, Version 2.0 (the "License");
 #   you may not use this file except in compliance with the License.
-#       You may obtain a copy of the License at
+#   You may obtain a copy of the License at
 #
 #       http://www.apache.org/licenses/LICENSE-2.0
 #
@@ -14,19 +14,53 @@
 #   limitations under the License.
 #
 # 
-# Example of packaging a gui application
-#
+
 include /usr/local/share/luggage/luggage.make
 
-TITLE=firefox368
-REVERSE_DOMAIN=org.mozilla.firefox
-#TARBALL_LOCATION="http://nate.adullmoment.com/pkg/firefox-201070801.tar.bz2"
-PAYLOAD=unbz2-applications-Firefox.app
-PACKAGE_VERSION=2010080301
+TITLE=Firefox
+REVERSE_DOMAIN=com.company
+PACKAGE_VERSION="3.6.28"
+PROXY=""
+PAYLOAD=\
+	pack-applications-Firefox.app \
+	pack-ff-ext-test \
+	pack-ff-override\
+	cleanup
+	#pack-script-preflight\
 
-# Having the tarball depend on Makefile ensures that make automatically
-# downloads a new tarball when you update TARBALL_LOCATION, rather than
-# building a stale payload.
 
-#Firefox.app.tar.bz2: Makefile
-#	curl ${TARBALL_LOCATION} -o Firefox.app.tar.bz2
+ifdef PROXY
+ifeq (PROXY,"")
+    $(info $(PROXY))
+    DL=curl -L -o Firefox.dmg http://download.mozilla.org/\?product=firefox-${PACKAGE_VERSION}\&os=osx\&lang=en-US
+else
+    DL=curl -L -o Firefox.dmg -x ${PROXY} http://download.mozilla.org/\?product=firefox-${PACKAGE_VERSION}\&os=osx\&lang=en-US
+endif
+endif
+
+
+l_apps_firefox: l_Applications Firefox.app
+	@sudo mkdir -pv ${WORK_D}/Applications/Firefox.app/Contents/MacOS/extensions
+	@sudo chown -Rfv root:admin ${WORK_D}/Applications/Firefox.app
+	@sudo chmod -Rfv 755 ${WORK_D}/Applications/Firefox.app
+
+pack-ff-ext-%: %  l_apps_firefox
+	@sudo ${DITTO} -V --noqtn $< ${WORK_D}/Applications/Firefox.app/Contents/MacOS/extensions/$<
+	@sudo chown -R root:admin ${WORK_D}/Applications/Firefox.app/Contents/MacOS/extensions/
+	@sudo chmod -Rv 644 ${WORK_D}/Applications/Firefox.app/Contents/MacOS/extensions/*
+
+
+pack-ff-override: override.ini l_apps_firefox
+	@sudo ${CP} -v ./override.ini ${WORK_D}/Applications/Firefox.app/Contents/MacOS/
+	@sudo chown root:admin ${WORK_D}/Applications/Firefox.app/Contents/MacOS/override.ini
+	@sudo chmod 744 ${WORK_D}/Applications/Firefox.app/Contents/MacOS/override.ini
+
+Firefox.app: Makefile
+	$(shell ${DL})
+	hdiutil mount Firefox.dmg -nobrowse -noautoopen -noverify
+	${DITTO} --noqtn /Volumes/Firefox/Firefox.app Firefox.app
+
+cleanup: Makefile
+	rm -Rfv Firefox.app
+	hdiutil detach /Volumes/Firefox
+	rm -v Firefox.dmg
