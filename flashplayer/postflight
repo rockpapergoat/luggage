@@ -1,0 +1,45 @@
+#!/usr/bin/env ruby
+require 'FileUtils'
+
+def get_homedir(user)
+  begin
+    Etc.getpwnam("#{user}")["dir"].chomp
+    # or with dscl
+    #homedir = %x(dscl . -read /users/#{user} NFSHomeDirectory).gsub(/NFSHomeDirectory: /,"")
+  rescue Exception => e
+  end    
+end
+
+
+def get_all_over500_users
+  user_hash = {}
+  `dscl . -list /users UniqueID | sort -k2 -n`.split("\n").each do |pair|
+    pair.split(" ").collect! { user_hash[pair.split(" ")[0]] = pair.split(" ")[1].to_i}
+  end
+  user_hash.delete_if {|k,v| v.to_i < 500 }
+  # can also do it like this, but it reports all directory entries, not just local
+  # Etc.passwd { |d| user_hash[d.name] = d.uid if d.uid > 500 }
+end
+
+
+def stash_user_file(file,path)
+    users = get_all_over500_users
+    users.each_key do |u|
+        puts "copying files to #{u}\'s home at #{path}."
+        system "ditto -V #{file} #{get_homedir(u)}/#{path}/#{File.basename(file)}"
+        FileUtils.chown_R("#{u}", nil, "#{get_homedir(u)}/#{path}/#{File.basename(file)}")
+    end
+end
+
+def safe_install(pkgpath)
+  begin
+    if pkgpath
+      %x(/usr/sbin/installer -pkg #{pkgpath} -target / -verbose)
+    else
+      raise Exception => e
+    end
+  end
+end
+
+safe_install("/private/tmp/AdobeFlashPlayer.pkg")
+stash_user_file("/Library/Preferences/Macromedia","Library/Preferences")
