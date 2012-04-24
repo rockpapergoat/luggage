@@ -19,7 +19,7 @@ include /usr/local/share/luggage/luggage.make
 
 TITLE=flash_player
 REVERSE_DOMAIN=com.company
-PACKAGE_VERSION="11.2.202.228"
+PACKAGE_VERSION="11.2.202.233"
 URL=http://fpdownload.macromedia.com/get/flashplayer/pdc/${PACKAGE_VERSION}/install_flash_player_osx.dmg
 PROXY=""
 PAYLOAD=\

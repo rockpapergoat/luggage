@@ -19,14 +19,14 @@ include /usr/local/share/luggage/luggage.make
 
 TITLE=Firefox
 REVERSE_DOMAIN=com.company
-PACKAGE_VERSION="3.6.28"
+PACKAGE_VERSION="10.0.3esr"
 PROXY=""
 PAYLOAD=\
 	pack-applications-Firefox.app \
 	pack-ff-ext-test \
-	pack-ff-override\
+	pack-ff-override \
+	pack-script-preflight \
 	cleanup
-	#pack-script-preflight\
 
 
 ifdef PROXY
@@ -59,6 +59,10 @@ Firefox.app: Makefile
 	$(shell ${DL})
 	hdiutil mount Firefox.dmg -nobrowse -noautoopen -noverify
 	${DITTO} --noqtn /Volumes/Firefox/Firefox.app Firefox.app
+
+preflight: Makefile
+    VERSION=$(shell echo ${PACKAGE_VERSION} | tr -d [:alpha:])
+    $(shell sed -i "" 's/v2=/v2=${VERSION}/' preflight )
 
 cleanup: Makefile
 	rm -Rfv Firefox.app

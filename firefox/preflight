@@ -1,0 +1,56 @@
+#!/bin/bash
+
+# cf. http://stackoverflow.com/questions/4023830/bash-how-compare-two-strings-in-version-format
+
+do_version_check() {
+
+   [ "$1" == "$2" ] && return 0
+
+   ver1front=`echo $1 | cut -d "." -f -1`
+   ver1back=`echo $1 | cut -d "." -f 2-`
+
+   ver2front=`echo $2 | cut -d "." -f -1`
+   ver2back=`echo $2 | cut -d "." -f 2-`
+
+   if [ "$ver1front" != "$1" ] || [ "$ver2front" != "$2" ]; then
+       [ "$ver1front" -gt "$ver2front" ] && return 2
+       [ "$ver1front" -lt "$ver2front" ] && return 1
+
+       [ "$ver1front" == "$1" ] || [ -z "$ver1back" ] && ver1back=0
+       [ "$ver2front" == "$2" ] || [ -z "$ver2back" ] && ver2back=0
+       do_version_check "$ver1back" "$ver2back"
+       return $?
+   else
+           [ "$1" -gt "$2" ] && return 2 || return 1
+   fi
+}    
+
+
+# EDIT HERE
+# change the app path and new version number
+
+app="/Applications/Firefox.app"
+v2=10.0.310.0.3
+
+if [[ -d $app ]]; then
+  v1=`defaults read $app/Contents/Info CFBundleShortVersionString`
+else
+  v1=0
+fi
+
+
+
+do_version_check "$v1" "$v2"
+
+result=`echo $?`
+
+if [[ $result == 0 ]]; then
+    echo "versions match. installing."
+    exit 0
+    elif [[ $result == 1 ]]; then
+        echo "$app $v1 is less than $v2. installing."
+        exit 0
+    elif [[ $result == 2 ]]; then
+    echo "$app $v1 is greater than $v2. quitting."
+    exit 1
+fi
