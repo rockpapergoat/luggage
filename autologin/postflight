@@ -1,0 +1,7 @@
+#!/bin/bash
+
+# set account to autologin and add the password
+/usr/bin/defaults write /Library/Preferences/com.apple.loginwindow autoLoginUser username
+/usr/bin/defaults write /Library/Preferences/com.apple.loginwindow autoLoginUserUID 1036
+# copy the password hash to /etc and set perms
+/bin/chmod 600 /etc/kcpassword
