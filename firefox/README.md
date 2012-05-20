@@ -16,5 +16,7 @@ Thanks,
 Nate
 
 cf. [extension installation details](https://developer.mozilla.org/en/Installing_extensions)
+
 cf. [krypted deploy notes](http://krypted.com/mass-deployment/deploying-and-managing-firefox-the-rough-guide/)
+
 cf. [greg neagle's notes](http://managingosx.wordpress.com/2012/02/28/firefox-10-esr-and-cck-notes/)
