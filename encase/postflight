@@ -1,0 +1,5 @@
+#!/bin/bash
+
+if [[ -e /Library/StartupItems/EnCase/EnCase ]]; then
+	/sbin/SystemStarter start EnCase
+fi

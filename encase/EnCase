@@ -1,0 +1,21 @@
+#!/bin/sh
+. /etc/rc.common
+StartService ()
+{
+ConsoleMessage "Starting EnCase Servlet"
+	/usr/local/sbin/enosxintel -d -p /usr/local/sbin
+}
+StopService ()
+{
+ConsoleMessage "Stopping EnCase Servlet"
+	pid=`/bin/ps -ax | /usr/bin/grep [e]nosx | /usr/bin/sed -e 's/^ *//' -e 's/ .*//'`
+	/bin/kill ${pid}
+}
+RestartService ()
+{
+ConsoleMessage "Restarting EnCase Servlet"
+	pid=`/bin/ps -ax | /usr/bin/grep [e]nosx | /usr/bin/sed -e 's/^ *//' -e 's/ .*//'`
+	/bin/kill ${pid}
+	/usr/local/sbin/enosxintel -d -p /usr/local/sbin
+}
+RunService "$1"

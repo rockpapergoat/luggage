@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Description</key>
+	<string>EnCase</string>
+	<key>OrderPreference</key>
+	<string>Last</string>
+	<key>Messages</key>
+	<dict>
+		<key>restart</key>
+		<string>Restarting EnCase agent</string>
+		<key>start</key>
+		<string>Starting EnCase agent</string>
+		<key>stop</key>
+		<string>Stopping EnCase agent</string>
+	</dict>
+	<key>Provides</key>
+	<array>
+		<string>EnCase</string>
+	</array>
+</dict>
+</plist>
